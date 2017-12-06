@@ -30,7 +30,7 @@ public class ColmenaDAO
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into colmena(nombre) values (?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into colmena(idColMadre, idApiario, cantidad, calidad, reina, proMiel, panAlimento, panCera, panCria, panVacio) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setInt(1, user.getIdColMadre());
             preparedStatement.setInt(2, user.getIdApiario());
             preparedStatement.setInt(3, user.getCantidad());
@@ -67,7 +67,7 @@ public class ColmenaDAO
     {
         try 
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("update colmena set nombre=?" + "where idCol=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update colmena set idColMadre=?, idApiario=?, cantidad=?, calidad=?, reina=?, proMiel=?, panAlimento=?, panCera=?, panCria=?, panVacio=?" + "where idCol=?");
             preparedStatement.setInt(1, user.getIdColMadre());
             preparedStatement.setInt(2, user.getIdApiario());
             preparedStatement.setInt(2, user.getIdSede());

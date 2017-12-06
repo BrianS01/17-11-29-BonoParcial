@@ -30,7 +30,7 @@ public class RecolectorDAO
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into colmena(nombre) values (?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into recolector(nombre, fabrica) values (?, ?)");
             preparedStatement.setString(1, user.getNombre());
             preparedStatement.setString(2, user.getFabrica());
             preparedStatement.executeUpdate();
@@ -41,12 +41,12 @@ public class RecolectorDAO
         }
     }
 
-    public void deleteUser(int idCol)
+    public void deleteUser(int idRecolector)
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from colmena where idCol=?");
-            preparedStatement.setInt(1, idCol);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from recolector where idRecolector=?");
+            preparedStatement.setInt(1, idRecolector);
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -59,7 +59,7 @@ public class RecolectorDAO
     {
         try 
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("update colmena set nombre=?" + "where idCol=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update recolector set nombre=?, fabrica=?" + "where idRecolector=?");
             preparedStatement.setString(1, user.getNombre());
             preparedStatement.setString(2, user.getFabrica());
             preparedStatement.executeUpdate();
@@ -78,7 +78,7 @@ public class RecolectorDAO
         {
             System.out.println("Llegue hasta aca");
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from colmena");
+            ResultSet rs = statement.executeQuery("select * from recolector");
             
             while (rs.next())
             {
@@ -95,14 +95,14 @@ public class RecolectorDAO
         return users;
     }
 
-    public Recolector getUserById(int idCol)
+    public Recolector getUserById(int idRecolector)
     {
         Recolector user = new Recolector();
         
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from colmena where idCol=?");
-            preparedStatement.setInt(1, idCol);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from recolector where idRecolector=?");
+            preparedStatement.setInt(1, idRecolector);
             ResultSet rs = preparedStatement.executeQuery();
             
             if (rs.next())
